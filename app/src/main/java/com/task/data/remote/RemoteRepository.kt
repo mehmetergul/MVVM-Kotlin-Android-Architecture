@@ -10,6 +10,7 @@ import io.reactivex.Single
 import retrofit2.Call
 import java.io.IOException
 import javax.inject.Inject
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 
 /**
@@ -55,4 +56,20 @@ constructor(private val serviceGenerator: ServiceGenerator) : RemoteSource {
         }
 
     }
+
+    fun requestCoutries() : Single<Data> {
+        return Single.create {
+            if (!isConnected(App.context)) {
+                it.onError(Error(code = -1, description = NETWORK_ERROR))
+            } else {
+                val newsService = serviceGenerator.createService(NewsService::class.java, Constants.BASE_URL_YVZ)
+                var hashMap : HashMap<String, String>
+                        = HashMap()
+                hashMap.put("command", "content.getCountries")
+                hashMap.put("appToken", "5545DFE89136338D78DBAC7AB9F62MAJ0GLOVO")
+                hashMap.put("channel", "WEB")
+                val data = processCall(newsService.fetchCountries(hashMap), false)
+                it.onSuccess(data)
+            }
+        }    }
 }

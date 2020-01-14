@@ -9,4 +9,6 @@ import io.reactivex.Single
 
 internal interface DataSource {
     fun requestNews(): Single<Data>
+    fun requestCountries(): Single<Data>
+
 }

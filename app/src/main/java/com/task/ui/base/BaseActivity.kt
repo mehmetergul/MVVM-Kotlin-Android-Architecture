@@ -6,7 +6,10 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.task.R
 import com.task.ui.base.listeners.ActionBarView
 import com.task.ui.base.listeners.BaseView
@@ -18,20 +21,51 @@ import kotlinx.android.synthetic.main.toolbar.*
  */
 
 
-abstract class BaseActivity : AppCompatActivity(), BaseView, ActionBarView {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(), BaseView, ActionBarView {
 
-    protected lateinit var baseViewModel: BaseViewModel
 
+    var viewDataBinding: T? = null
+        private set
+
+    private var mViewModel: V? = null
+
+    /**
+     * Override for set binding variable
+     *
+     * @return variable id
+     */
+    abstract val bindingVariable: Int
+
+    @get:LayoutRes
     abstract val layoutId: Int
 
-    protected abstract fun initializeViewModel()
+    abstract val viewModel: V
+
+    val baseViewModel: V?
+        get() {
+            return mViewModel
+        }
+
+    protected abstract fun bindingViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(layoutId)
+        performDataBinding()
         initializeToolbar()
-        initializeViewModel()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        bindingViewModel()
+
+    }
+
+    private fun performDataBinding() {
+        viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
+        this.mViewModel = if (mViewModel == null) viewModel else mViewModel
+        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
+        viewDataBinding!!.executePendingBindings()
     }
 
     private fun initializeToolbar() {

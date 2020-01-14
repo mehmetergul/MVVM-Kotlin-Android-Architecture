@@ -37,7 +37,7 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     fun setTitle(title: String) {
-        val actionBar = (activity as BaseActivity).supportActionBar
+        val actionBar = (activity as BaseActivity<*, *>).supportActionBar
         if (actionBar != null) {
             val titleTextView = activity?.findViewById<TextView>(R.id.txt_toolbar_title)
             if (title.isNotEmpty()) {

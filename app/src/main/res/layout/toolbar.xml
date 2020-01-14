@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/news"/>
+            android:text="@string/countries"/>
 
         <ImageView
             android:id="@+id/ic_toolbar_setting"
@@ -34,7 +34,8 @@
             android:id="@+id/ic_toolbar_refresh"
             style="@style/toolbar_left_style"
             android:contentDescription="@null"
-            android:src="@android:drawable/stat_notify_sync"/>
+            android:src="@android:drawable/stat_notify_sync"
+            android:visibility="gone"/>
 
     </androidx.appcompat.widget.Toolbar>
 

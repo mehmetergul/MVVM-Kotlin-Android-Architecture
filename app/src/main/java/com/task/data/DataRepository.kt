@@ -13,6 +13,9 @@ import javax.inject.Inject
 
 class DataRepository @Inject
 constructor(private val remoteRepository: RemoteRepository, private val localRepository: LocalRepository) : DataSource {
+    override fun requestCountries(): Single<Data> {
+        return remoteRepository.requestCoutries()
+    }
 
     override  fun requestNews(): Single<Data> {
         return remoteRepository.requestNews()

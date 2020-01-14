@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ahmed Task</string>
+    <string name="app_name">MVVM Base</string>
     <string name="no_data">No Data</string>
     <string name="search_by_title">Search by title</string>
     <string name="search_error">there is no such title</string>
@@ -13,5 +13,6 @@
     </string>
     <string name="news_title_preview">this is the news title</string>
     <string name="news">News</string>
+    <string name="countries">Countries</string>
     <string name="no_internet">Please check your internet connection</string>
 </resources>

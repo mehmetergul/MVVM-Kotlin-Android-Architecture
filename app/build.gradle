@@ -21,6 +21,11 @@ android {
         versionName project.versionName
         multiDexEnabled true
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     buildTypes {
         debug {
             debuggable true

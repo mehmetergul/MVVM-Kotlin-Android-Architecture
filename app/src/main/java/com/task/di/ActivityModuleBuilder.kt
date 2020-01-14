@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 package com.task.di
-import com.task.ui.component.details.DetailsActivity
-import com.task.ui.component.news.NewsListActivity
+import com.task.ui.component.countries.CountriesActivity
 import com.task.ui.component.splash.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -27,8 +26,5 @@ abstract class ActivityModuleBuilder {
     abstract fun contributeSplashActivity(): SplashActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeHomeActivity(): NewsListActivity
-
-    @ContributesAndroidInjector
-    abstract fun contributeDetailsActivity(): DetailsActivity
+    abstract fun contributeCountriesActivity(): CountriesActivity
 }
