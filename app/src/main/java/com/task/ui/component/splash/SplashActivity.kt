@@ -3,7 +3,7 @@ package com.task.ui.component.splash
 import android.os.Bundle
 import android.os.Handler
 import com.task.R
-import com.task.data.remote.dto.CountriesModel
+import com.task.data.remote.model.CountriesModel
 import com.task.databinding.ActivitySplashBinding
 import com.task.ui.ViewModelFactory
 import com.task.ui.base.BaseActivity

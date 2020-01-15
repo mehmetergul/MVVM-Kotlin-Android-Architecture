@@ -2,7 +2,7 @@ package com.task.ui.component.countries
 
 import androidx.lifecycle.MutableLiveData
 import com.task.data.remote.Error
-import com.task.data.remote.dto.CountriesModel
+import com.task.data.remote.model.CountriesModel
 
 import com.task.ui.base.BaseViewModel
 import com.task.ui.base.listeners.BaseCallback
@@ -15,7 +15,7 @@ constructor(private val countriesUseCase: CountriesUseCase) : BaseViewModel(){
     var showError: MutableLiveData<Error> = MutableLiveData()
 
     fun getCountries() {
-        countriesUseCase.getCountries(callback)
+        countriesUseCase.getCountries(callback, "id")
     }
 
     private val callback = object : BaseCallback<CountriesModel> {

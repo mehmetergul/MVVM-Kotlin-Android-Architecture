@@ -1,4 +1,4 @@
-package com.task.data.remote.dto
+package com.task.data.remote.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

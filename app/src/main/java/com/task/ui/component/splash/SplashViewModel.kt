@@ -1,7 +1,7 @@
 package com.task.ui.component.splash
 
 import androidx.lifecycle.MutableLiveData
-import com.task.data.remote.dto.CountriesModel
+import com.task.data.remote.model.CountriesModel
 import com.task.ui.base.BaseViewModel
 import javax.inject.Inject
 

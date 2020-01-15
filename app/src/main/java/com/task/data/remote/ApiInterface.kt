@@ -1,6 +1,6 @@
 package com.task.data.remote
 
-import com.task.data.remote.dto.CountriesModel
+import com.task.data.remote.model.CountriesModel
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

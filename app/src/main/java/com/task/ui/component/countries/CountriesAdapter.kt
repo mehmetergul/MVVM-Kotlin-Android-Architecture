@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.task.R
-import com.task.data.remote.dto.CountriesItem
+import com.task.data.remote.model.CountriesItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
 
