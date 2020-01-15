@@ -11,9 +11,6 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
 
 @Singleton
 class ServiceGenerator @Inject

@@ -12,9 +12,6 @@ import com.task.utils.Constants
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(){
 

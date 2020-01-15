@@ -8,10 +8,6 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
-
 class App : MultiDexApplication(), HasActivityInjector {
 
     @Inject

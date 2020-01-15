@@ -1,8 +1,5 @@
 package com.task.utils
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
 
 class Constants {
     companion object INSTANCE {

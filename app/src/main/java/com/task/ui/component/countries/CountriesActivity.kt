@@ -5,7 +5,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.task.R
-import com.task.data.remote.dto.NewsItem
 import com.task.databinding.ActivityCountriesBinding
 import com.task.ui.ViewModelFactory
 import com.task.ui.base.BaseActivity
@@ -98,7 +97,7 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
         viewModel.getCountries()
     }
 
-    private fun navigateToDetailsScreen(news: NewsItem) {
+    private fun navigateToDetailsScreen() {
      //   startActivity(intentFor<DetailsActivity>(Constants.NEWS_ITEM_KEY to news))
     }
 

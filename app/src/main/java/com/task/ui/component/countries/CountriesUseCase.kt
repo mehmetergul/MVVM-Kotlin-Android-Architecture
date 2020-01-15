@@ -29,7 +29,12 @@ constructor(private val dataRepository: DataRepository) : CountriesUseCaseImpl {
             }
         }
         if (!compositeDisposable?.isDisposed) {
-            val newsModelSingle = dataRepository.requestCountries()
+            var hashMap : HashMap<String, Any>
+                    = HashMap()
+            hashMap.put("command", "content.getCountries")
+            hashMap.put("appToken", "5545DFE89136338D78DBAC7AB9F62MAJ0GLOVO")
+            hashMap.put("channel", "WEB")
+            val newsModelSingle = dataRepository.requestCountries(hashMap)
             val newsDisposable = newsModelSingle.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith<DisposableSingleObserver<Data>>(disposableSingleObserver)

@@ -7,17 +7,10 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
-
 class DataRepository @Inject
 constructor(private val remoteRepository: RemoteRepository, private val localRepository: LocalRepository) : DataSource {
-    override fun requestCountries(): Single<Data> {
-        return remoteRepository.requestCoutries()
+    override fun requestCountries(hashMap : HashMap<String, Any>): Single<Data> {
+        return remoteRepository.requestCountries(hashMap)
     }
 
-    override  fun requestNews(): Single<Data> {
-        return remoteRepository.requestNews()
-    }
 }

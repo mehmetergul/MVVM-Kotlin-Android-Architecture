@@ -10,9 +10,6 @@ import androidx.fragment.app.Fragment
 import com.task.R
 import com.task.ui.base.listeners.BaseView
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
 
 
 abstract class BaseFragment : Fragment(), BaseView {

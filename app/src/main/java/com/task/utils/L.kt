@@ -3,9 +3,6 @@ package com.task.utils
 import com.task.BuildConfig
 import org.jetbrains.anko.*
 
-/**
- * Created by AhmedEltaher on 01/01/17.
- */
 
 class L {
     companion object INSTANCE : AnkoLogger {

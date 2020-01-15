@@ -1,8 +1,5 @@
 package com.task.data.remote
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
 
 class Error : Throwable {
     var description: String? = ""

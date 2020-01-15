@@ -16,10 +16,6 @@ import com.task.ui.base.listeners.BaseView
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.toolbar.*
 
-/**
- * Created by AhmedEltaher on 5/12/2016
- */
-
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(), BaseView, ActionBarView {
 
