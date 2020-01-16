@@ -2,30 +2,41 @@ package com.task.ui.component.countries
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.task.BR
 import com.task.R
+import com.task.data.remote.model.CountriesItem
 import com.task.databinding.ActivityCountriesBinding
-import com.task.ui.ViewModelFactory
 import com.task.ui.base.BaseActivity
+import com.task.ui.base.listeners.RecyclerItemListener
+import com.task.ui.component.countries.detail.CountriesDetailFragment
 import com.task.utils.EspressoIdlingResource
+import dagger.android.AndroidInjector
 import kotlinx.android.synthetic.main.activity_countries.*
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 import javax.inject.Inject
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
+
 
 /**
  * @author mehmetergul on 15/01/2020
  * Copyright (c) 2020. All rights reserved.
  */
 
-class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewModel>()  {
-
-    override val bindingVariable: Int
-        get() = 1
+class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewModel>(), RecyclerItemListener, HasSupportFragmentInjector {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return fragmentDispatchingAndroidInjector
+    }
+
+    override val bindingVariable: Int
+        get() = BR.viewModel
 
     override val layoutId: Int
         get() = R.layout.activity_countries
@@ -37,7 +48,6 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
 
     @Inject
     internal lateinit var mViewModel: CountriesViewModel
-
 
     private var mActivityCountriesBinding: ActivityCountriesBinding? = null
 
@@ -59,7 +69,8 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
                 tv_no_data.visibility = View.VISIBLE
                 rl_news_list.visibility = View.GONE
                 toast("Please check your Internet connection!")
-                pb_loading.visibility = View.GONE
+             //   pb_loading.visibility = View.GONE
+                hideLoading()
             }
         })
 
@@ -73,7 +84,7 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
             // we don't need any null checks here for the adapter since LiveData guarantees that
             if (!(countriesModel?.countries.isNullOrEmpty())) {
                 mActivityCountriesBinding!!.viewModel = viewModel
-                val countriesAdapter = CountriesAdapter( countriesModel?.countries!!)
+                val countriesAdapter = CountriesAdapter( countriesModel?.countries!!, this)
                 rv_news_list.adapter = countriesAdapter
                 showDataView(true)
             } else {
@@ -91,29 +102,29 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
         rv_news_list.setHasFixedSize(true)
     }
 
-   /* override fun onItemSelected(position: Int) =
-            this.navigateToDetailsScreen(news = viewModel.newsModel.value?.newsItems?.get(position)!!)*/
+    override fun onItemSelected(position: Int) =
+            this.navigateToDetailsScreen(viewModel.countriesModel.value?.countries?.get(position)!!)
 
     private fun getCountries() {
-        pb_loading.visibility = View.VISIBLE
+        showLoading()
         tv_no_data.visibility = View.GONE
         rl_news_list.visibility = View.GONE
         EspressoIdlingResource.increment()
         viewModel.getCountries()
     }
 
-    private fun navigateToDetailsScreen() {
-     //   startActivity(intentFor<DetailsActivity>(Constants.NEWS_ITEM_KEY to news))
+
+    private fun navigateToDetailsScreen(countriesItem: CountriesItem) {
+        var bundle : Bundle = Bundle()
+        bundle.putParcelable("countriesItem", countriesItem)
+        setFragment(CountriesDetailFragment(), R.id.fl_container, true, bundle)
     }
 
-    private fun showSearchError() {
-        rl_news_list.snackbar(R.string.search_error)
-    }
 
     private fun showDataView(show: Boolean) {
         tv_no_data.visibility = if (show) View.GONE else View.VISIBLE
         rl_news_list.visibility = if (show) View.VISIBLE else View.GONE
-        pb_loading.visibility = View.GONE
+        hideLoading()
     }
 
 

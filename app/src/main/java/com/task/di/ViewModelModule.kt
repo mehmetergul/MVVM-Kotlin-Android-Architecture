@@ -17,6 +17,7 @@ package com.task.di
 
 import androidx.lifecycle.ViewModel
 import com.task.ui.component.countries.CountriesViewModel
+import com.task.ui.component.countries.detail.CountriesDetailViewModel
 import com.task.ui.component.splash.SplashViewModel
 import dagger.Binds
 import dagger.Module
@@ -29,10 +30,16 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(SplashViewModel::class)
-    abstract fun bindSplashViewModel(viewModel: SplashViewModel): ViewModel@Binds
+    abstract fun bindSplashViewModel(viewModel: SplashViewModel): ViewModel
 
+    @Binds
     @IntoMap
     @ViewModelKey(CountriesViewModel::class)
     abstract fun bindCountriesViewModel(viewModel: CountriesViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CountriesDetailViewModel::class)
+    abstract fun bindCountriesDetailViewModel(viewModel: CountriesDetailViewModel): ViewModel
 
 }

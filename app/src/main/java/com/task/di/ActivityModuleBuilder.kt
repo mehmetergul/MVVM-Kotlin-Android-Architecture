@@ -27,4 +27,5 @@ abstract class ActivityModuleBuilder {
 
     @ContributesAndroidInjector
     abstract fun contributeCountriesActivity(): CountriesActivity
+
 }
