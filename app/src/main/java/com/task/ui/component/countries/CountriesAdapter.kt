@@ -10,6 +10,10 @@ import com.task.data.remote.model.CountriesItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
 
+/**
+ * @author mehmetergul on 15/01/2020
+ * Copyright (c) 2020. All rights reserved.
+ */
 
 class CountriesAdapter(private val countries: List<CountriesItem>) : RecyclerView.Adapter<CountriesAdapter.CountriesViewHolder>() {
 
@@ -40,7 +44,7 @@ class CountriesAdapter(private val countries: List<CountriesItem>) : RecyclerVie
             tv_title.text = countriesItem.code
 
             if (!countriesItem.flagUrl.isNullOrEmpty()) {
-                Picasso.get().load(countriesItem.flagUrl).placeholder(R.drawable.news).error(R.drawable.news).into(iv_news_item_image)
+                Picasso.get().load(countriesItem.flagUrl).placeholder(R.drawable.mvvm).error(R.drawable.mvvm).into(iv_news_item_image)
             }
         //    rl_news_item.setOnClickListener { recyclerItemListener.onItemSelected(countriesItem) }
         }

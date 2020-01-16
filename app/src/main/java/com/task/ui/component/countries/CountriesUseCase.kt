@@ -11,6 +11,11 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * @author mehmetergul on 15/01/2020
+ * Copyright (c) 2020. All rights reserved.
+ */
+
 class CountriesUseCase
 @Inject
 constructor(private val dataRepository: DataRepository) : CountriesUseCaseImpl {

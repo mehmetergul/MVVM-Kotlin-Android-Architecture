@@ -14,6 +14,11 @@ import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 import javax.inject.Inject
 
+/**
+ * @author mehmetergul on 15/01/2020
+ * Copyright (c) 2020. All rights reserved.
+ */
+
 class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewModel>()  {
 
     override val bindingVariable: Int

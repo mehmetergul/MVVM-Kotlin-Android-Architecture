@@ -8,6 +8,11 @@ import com.task.ui.base.BaseViewModel
 import com.task.ui.base.listeners.BaseCallback
 import javax.inject.Inject
 
+/**
+ * @author mehmetergul on 15/01/2020
+ * Copyright (c) 2020. All rights reserved.
+ */
+
 class CountriesViewModel @Inject
 constructor(private val countriesUseCase: CountriesUseCase) : BaseViewModel(){
     var countriesModel: MutableLiveData<CountriesModel> = MutableLiveData()
