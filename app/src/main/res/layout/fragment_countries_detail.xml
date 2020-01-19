@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable name="viewModel"
             type="com.task.ui.component.countries.detail.CountriesDetailViewModel"/>
     </data>
@@ -24,5 +25,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:imageUrl="@{viewModel.countriesItem.flagUrl}"
+            android:scaleType="fitCenter"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout></layout>
