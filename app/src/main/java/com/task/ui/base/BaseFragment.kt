@@ -17,7 +17,7 @@ import com.task.ui.base.listeners.BaseView
 import dagger.android.support.AndroidSupportInjection
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel>  : Fragment(), BaseView {
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>>  : Fragment(), BaseView {
 
     var baseActivity: BaseActivity<*, *>? = null
         private set

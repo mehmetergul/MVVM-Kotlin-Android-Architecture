@@ -1,6 +1,7 @@
 package com.task.ui.component.countries
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -10,6 +11,7 @@ import com.task.R
 import com.task.data.remote.model.CountriesItem
 import com.task.databinding.ActivityCountriesBinding
 import com.task.ui.base.BaseActivity
+import com.task.ui.base.BaseViewModel
 import com.task.ui.base.listeners.RecyclerItemListener
 import com.task.ui.component.countries.detail.CountriesDetailFragment
 import com.task.utils.EspressoIdlingResource
@@ -26,7 +28,10 @@ import dagger.android.support.HasSupportFragmentInjector
  * Copyright (c) 2020. All rights reserved.
  */
 
-class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewModel>(), RecyclerItemListener, HasSupportFragmentInjector {
+class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewModel>(), RecyclerItemListener, HasSupportFragmentInjector, CountriesNavigator {
+    override fun onNavigateActivity() {
+        Log.d("girdigirdi", "asdfghjklşi")
+    }
 
     @Inject
     lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -58,6 +63,7 @@ class CountriesActivity : BaseActivity<ActivityCountriesBinding, CountriesViewMo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.navigator = this
         initializeCountriesList()
         init(viewModel)
     }

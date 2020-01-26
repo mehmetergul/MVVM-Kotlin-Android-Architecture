@@ -7,6 +7,8 @@ import com.task.data.remote.model.CountriesModel
 import com.task.ui.base.listeners.BaseCallback
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -23,10 +25,13 @@ constructor(private val dataRepository: DataRepository) : CountriesUseCaseImpl {
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     override fun getCountries(callback: BaseCallback<CountriesModel>, id : String) {
-        val disposableSingleObserver = object : DisposableSingleObserver<Data>() {
+        val disposableObserver = object : DisposableObserver<Data>() {
+            override fun onComplete() {
 
-            override fun onSuccess(data: Data) {
-                callback.onSuccess(data.data as CountriesModel?)
+            }
+
+            override fun onNext(t: Data) {
+                callback.onSuccess(t.data as CountriesModel?)
             }
 
             override fun onError(throwable: Throwable) {
@@ -42,7 +47,7 @@ constructor(private val dataRepository: DataRepository) : CountriesUseCaseImpl {
             val newsModelSingle = dataRepository.requestCountries(hashMap)
             val newsDisposable = newsModelSingle.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith<DisposableSingleObserver<Data>>(disposableSingleObserver)
+                    .subscribeWith<DisposableObserver<Data>>(disposableObserver)
             compositeDisposable.add(newsDisposable)
         }
     }

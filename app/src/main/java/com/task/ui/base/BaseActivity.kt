@@ -31,7 +31,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.toolbar.*
 
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatActivity(), BaseView, ActionBarView, BaseFragment.Callback {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), BaseView, ActionBarView, BaseFragment.Callback {
 
     private var mProgressDialog: ProgressDialog? = null
 

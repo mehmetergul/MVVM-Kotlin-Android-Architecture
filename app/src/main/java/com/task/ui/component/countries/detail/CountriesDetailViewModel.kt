@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.task.data.remote.model.CountriesItem
 import com.task.data.remote.model.CountriesModel
 import com.task.ui.base.BaseViewModel
+import com.task.ui.component.countries.CountriesNavigator
 import com.task.ui.component.countries.CountriesUseCase
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ import javax.inject.Inject
  */
 class CountriesDetailViewModel
 @Inject
-constructor(private val countriesUseCase: CountriesUseCase) : BaseViewModel(){
+constructor(private val countriesUseCase: CountriesUseCase) : BaseViewModel<CountriesNavigator>(){
 
     var countriesItem: MutableLiveData<CountriesItem> = MutableLiveData()
 
